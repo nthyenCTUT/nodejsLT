@@ -42,4 +42,15 @@ let compareUserPassword = async (user, pass) => {
     return rows
 
 }
-export default { handleUserLogin }
+let getAllUsersOrSingle = async (userId) => {
+    let sql = ''
+    let [rows, fields] = []
+    if (userId == 'ALL')
+        [rows, fields] = await pool.execute('SELECT id,username,role FROM `adminusers`')
+    else if (userId && userId != 'ALL')
+        [rows, fields] = await pool.execute('SELECT id,username,role FROM `adminusers` where id=?', [userId])
+
+    return rows
+
+}
+export default { handleUserLogin, getAllUsersOrSingle }

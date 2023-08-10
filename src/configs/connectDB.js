@@ -12,6 +12,7 @@ const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'nodejs'
+
 });
 
 // simple query

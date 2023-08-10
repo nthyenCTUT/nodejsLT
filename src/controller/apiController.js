@@ -1,10 +1,13 @@
 import pool from "../configs/connectDB.js";
 import userService from '../services/userService.js'
 let getAllUsers = async (req, res) => {
-    const [rows, fields] = await pool.execute('SELECT * FROM `users`')
+    let { userId } = req.query
+    let users = await userService.getAllUsersOrSingle(userId)
+    console.log("users:", users)
     return res.status(200).json({
-        message: 'ok',
-        data: rows
+        errCode: 1,
+        message: "Sucess",
+        users: users
     })
 
 }
@@ -48,8 +51,6 @@ let handleLogin = async (req, res) => {
 
         })
     }
-
-
     let userData = await userService.handleUserLogin(username, password)
     return res.status(200).json({
         errCode: userData.errCode,
