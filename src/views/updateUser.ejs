@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="/update-user" method="post">
+        <input type="hidden" name="id" value="<%= data[0].id %>" />
+        <input type="text" placeholder="firstname" name="firstname" value="<%= data[0].firstname %>" />
+        <input type="text" placeholder="lastname" name="lastname" value="<%= data[0].lastname %>" />
+        <input type="email" placeholder="email" name="email" value="<%= data[0].email %>" />
+        <input type="text" placeholder="address" name="address" value="<%= data[0].address %>" />
+        <input type="submit" value="Cập nhật" />
+    </form>
+</body>
+
+</html>

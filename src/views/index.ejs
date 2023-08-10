@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 3</a>
+        </li>
+    </ul>
+    <!--Cú pháp EJS để gọi dữ liệu data[0][1]-->
+    <table border="1" width="40%" align="center">
+        <tr>
+            <td>
+                ID
+            </td>
+            <td>
+                First name
+            </td>
+            <td>
+                Action
+            </td>
+
+        </tr>
+        <% for(let i=0; i < data.length; i++) { %>
+            <tr>
+                <td>
+                    <%= data[i].id %>
+                </td>
+                <td>
+                    <%= data[i].firstname %>
+                </td>
+                <td>
+                    <a href="/detail/user/<%= data[i].id %>">Xem chi tiết</a>
+                    <form action="/edit-user/<%= data[i].id %>" method="get">
+                        <input type="submit" value="Sửa" />
+                    </form>
+                    <form action="/delete-user" method="post">
+                        <input type="hidden" value="<%= data[i].id %>" name="id" />
+                        <input type="submit" value="Xóa" />
+                    </form>
+
+
+
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <div>Create new user</div>
+    <form action="/create-new-user" method="post">
+        <input type="text" placeholder="firstname" name="firstname" />
+        <input type="text" placeholder="lastname" name="lastname" />
+        <input type="email" placeholder="email" name="email" />
+        <input type="text" placeholder="address" name="address" />
+        <input type="submit" value="Tạo" />
+    </form>
+</body>
+
+</html>
